@@ -1,0 +1,41 @@
+- .gitignore
+- babel.config.js
+- cypress
+  - downloads
+  - e2e
+    - rateAThumbnail.cy.ts
+  - fixtures
+    - bad.png
+    - example.json
+    - good.png
+  - integration
+  - plugins
+    - index.js
+  - support
+    - commands.ts
+    - e2e.ts
+  - tsconfig.json
+- cypress.config.ts
+- integration
+  - getARandomImage.test.ts
+  - rateAThumbnail.test.ts
+- jest.config.ts
+- package.json
+- pnpm-lock.yaml
+- public
+  - images
+    - backlog
+    - bad
+    - good
+  - index.html
+- src
+  - fileMover.ts
+  - getImagesInDirectory.ts
+  - getRandomImage.ts
+  - index.ts
+  - thumbnailMover.ts
+- __tests__
+  - fileMover.test.ts
+  - getImagesInDirectory.ts
+  - getRandomImage.test.ts
+  - thumbnailMover.test.ts

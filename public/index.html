@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thumbnail Voting App</title>
+  </head>
+  <body>
+    <img id="image" />
+    <button id="upvote">up vote</button>
+    <button id="downvote">down vote</button>
+    <script>
+      let randomThumbnailId;
+      const displayRandomThumbnail = async () => {
+        const response = await fetch('/thumbnails/random');
+        randomThumbnailId = await response.text();
+        document.getElementById(
+          'image'
+        ).src = `/images/backlog/${randomThumbnailId}`;
+      };
+      displayRandomThumbnail();
+
+      const voteOnThumbnail = async (isGood) => {
+        try {
+          await fetch(`/thumbnails/${randomThumbnailId}/votes`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              isGood,
+            }),
+          });
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+        await displayRandomThumbnail();
+      };
+      document.getElementById('upvote').addEventListener('click', async () => {
+        await voteOnThumbnail(true);
+      });
+      document
+        .getElementById('downvote')
+        .addEventListener('click', async () => {
+          await voteOnThumbnail(false);
+        });
+    </script>
+  </body>
+</html>
